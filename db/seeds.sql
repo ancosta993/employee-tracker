@@ -39,9 +39,12 @@ VALUES
    ("Tom", "Allen", 8, 4,4);
 
 
-SELECT employees.id, employees.first_name, employees.last_name, roles.title AS role, departments.name AS department, roles.salary AS salary, managers.name AS managers
-FROM employees
-LEFT JOIN departments ON employees.department_id = departments.id
-LEFT JOIN managers ON employees.manager_id = managers.id
-LEFT JOIN roles ON employees.role_id = roles.id;
+-- SELECT employees.id, employees.first_name, employees.last_name, roles.title AS role, departments.name AS department, roles.salary AS salary, managers.name AS managers
+-- FROM employees
+-- LEFT JOIN departments ON employees.department_id = departments.id
+-- LEFT JOIN managers ON employees.manager_id = managers.id
+-- LEFT JOIN roles ON employees.role_id = roles.id;
 
+-- INSERT INTO departments(name)
+-- VALUES
+--    ('Service');

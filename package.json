@@ -19,7 +19,8 @@
   "homepage": "https://github.com/ancosta993/employee-tracker#readme",
   "dependencies": {
     "inquirer": "^8.2.4",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "promise-mysql2": "^1.0.0"
   },
   "devDependencies": {
     "console.table": "^0.10.0"
