@@ -25,7 +25,7 @@ const viewPrompts = () => {
                message:'What would you like to do?',
                choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role"]
             },
-            {
+            { //ask this when add a department is chosen
                type:'input',
                message:"Enter new department:",
                name: 'newDept',
@@ -37,7 +37,7 @@ const viewPrompts = () => {
                   }
                }
             },
-            {
+            { //ask these when add a role is choosen
                type:'input',
                message:"Enter new roles:",
                name:'newRole',
@@ -72,7 +72,68 @@ const viewPrompts = () => {
                      return false;
                   }
                }
-            }
+            },
+            //Ask these when add an employee is chosen
+            {
+               type: 'input',
+               message: "Enter the first name of the employee:",
+               name:"empFirstName",
+               when: ({answer}) => {
+                  if(answer === "Add an employee"){
+                     return true;
+                  } else {
+                     return false;
+                  }
+               }
+            },
+            {
+               type: 'input',
+               message: "Enter the last name of the employee:",
+               name:"empLastName",
+               when: ({answer}) => {
+                  if(answer === "Add an employee"){
+                     return true;
+                  } else {
+                     return false;
+                  }
+               }
+            },
+            {
+               type: 'input',
+               message: "Enter the role of the employee:",
+               name:"empRole",
+               when: ({answer}) => {
+                  if(answer === "Add an employee"){
+                     return true;
+                  } else {
+                     return false;
+                  }
+               }
+            },
+            // {
+            //    type:'input',
+            //    message:'Enter employee department:',
+            //    name:"empDept",
+            //    when: ({answer}) => {
+            //       if (answer === "Add an employee") {
+            //          return true;
+            //       } else {
+            //          return false;
+            //       }
+            //    }
+            // },
+            {
+               type: 'input',
+               message: "Enter the manager's name of the employee:",
+               name:"empManager",
+               when: ({answer}) => {
+                  if(answer === "Add an employee"){
+                     return true;
+                  } else {
+                     return false;
+                  }
+               }
+            },
          ]);
 };
 
@@ -89,7 +150,7 @@ viewPrompts().then(ansObj => {
 
    } else if (ansObj.answer === "View All Roles"){
       viewDataInst.getAllRoles().then(result => {
-         console.table(result);
+         console.log(result);
       }).catch(err => {
          console.log("Promise rejected: "+ err)
       });
@@ -97,7 +158,7 @@ viewPrompts().then(ansObj => {
 
    } else if (ansObj.answer === "View All employees") {
       viewDataInst.getAllEmps().then(result => {
-         console.table(result);
+         console.log(result);
       }).catch(err => {
          console.log("Promise rejected: "+err);
       });
@@ -118,8 +179,12 @@ viewPrompts().then(ansObj => {
       }).catch(err => {
          console.log("Promise rejected: "+ err)
       });
+   } else if(ansObj.answer == "Add an employee") {
+      console.log(ansObj);
+      addDataInst.addEmp([ansObj.empFirstName, ansObj.empLastName, ansObj.empRole, ansObj.empManager]);
+      viewDataInst.getAllEmps().then(result=> console.table(result)).catch(err=> console.log("Promise Rejected: " + err));
    } else {
-      console.log("NO Match");
+      console.log("No Match");
    }
 });
 
