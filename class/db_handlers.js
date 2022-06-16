@@ -166,6 +166,9 @@ class updateData{
       this.sqlEmpNames = `SELECT first_name, last_name FROM employees`;
       this.sqlEmpId = `SELECT id FROM employees WHERE first_name = ? AND last_name = ?`;
       this.sqlRoleId = `SELECT id FROM roles WHERE title = ? `;
+      this.sqlUpdateDeptAndRole = `UPDATE employees
+      SET employees.role_id = ?, employees.department_id = (SELECT roles.department_id FROM roles WHERE roles.id = ?), employees.manager_id = (SELECT managers.id FROM managers WHERE managers.department_id = employees.department_id)
+      WHERE id = ?;`
       this.sqlUpdateRole = `UPDATE employees SET role_id = ? WHERE id = ?`;
    };
 
@@ -205,11 +208,12 @@ class updateData{
       });
    }
 
+
    updateRole(paramsArr){
       this.getEmpId(paramsArr[0].empToChange.split(' ')).then(empId => {
          this.getRoleId(paramsArr[1].newRole).then(roleId => {
             return new Promise((resolve, reject) => {
-               db.query(this.sqlUpdateRole, [roleId[0].id, empId[0].id], (err, rows)=>{
+               db.query(this.sqlUpdateDeptAndRole, [roleId[0].id, roleId[0].id, empId[0].id], (err, rows)=>{
                   if (rows === undefined){
                      reject(new Error("Rows undefined"));
                   } else {
@@ -219,7 +223,10 @@ class updateData{
             });
          });
       });
-   }
+   };
+
+   // Bonus
+   
 }
 
 module.exports = {viewData, addData, updateData};

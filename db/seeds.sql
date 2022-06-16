@@ -49,6 +49,14 @@ VALUES
 -- VALUES
 --    ('Service');
 
-SELECT e.first_name, e.last_name, r.title AS role
-FROM employees e
-LEFT JOIN roles r ON e.role_id = r.id;
+-- SELECT r.title, d.name FROM roles r
+-- LEFT JOIN departments d ON r.department_id = d.id
+-- WHERE title = "Sales Lead";
+
+-- UPDATE employees
+-- SET employees.role_id = 4, employees.department_id = (SELECT roles.department_id FROM roles WHERE roles.id = 4), employees.manager_id = (SELECT managers.id FROM managers WHERE managers.department_id = employees.department_id)
+-- WHERE id = 2;
+
+
+-- UPDATE employees SET employees.manager_id = (SELECT managers.id FROM managers WHERE managers.name = "Sarah Lourd") WHERE id = 2;
+
