@@ -1,8 +1,9 @@
 // const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const {viewData, addData} = require('./class/db_handlers');
+const {viewData, addData, updateData} = require('./class/db_handlers');
 const viewDataInst = new viewData();
 const addDataInst = new addData();
+const updateDataInst = new updateData();
 
 // Connect to database
 // const db = mysql.createConnection(
@@ -110,18 +111,6 @@ const viewPrompts = () => {
                   }
                }
             },
-            // {
-            //    type:'input',
-            //    message:'Enter employee department:',
-            //    name:"empDept",
-            //    when: ({answer}) => {
-            //       if (answer === "Add an employee") {
-            //          return true;
-            //       } else {
-            //          return false;
-            //       }
-            //    }
-            // },
             {
                type: 'input',
                message: "Enter the manager's name of the employee:",
@@ -133,7 +122,7 @@ const viewPrompts = () => {
                      return false;
                   }
                }
-            },
+            }
          ]);
 };
 
@@ -150,7 +139,7 @@ viewPrompts().then(ansObj => {
 
    } else if (ansObj.answer === "View All Roles"){
       viewDataInst.getAllRoles().then(result => {
-         console.log(result);
+         console.table(result);
       }).catch(err => {
          console.log("Promise rejected: "+ err)
       });
@@ -158,7 +147,7 @@ viewPrompts().then(ansObj => {
 
    } else if (ansObj.answer === "View All employees") {
       viewDataInst.getAllEmps().then(result => {
-         console.log(result);
+         console.table(result);
       }).catch(err => {
          console.log("Promise rejected: "+err);
       });
@@ -179,12 +168,44 @@ viewPrompts().then(ansObj => {
       }).catch(err => {
          console.log("Promise rejected: "+ err)
       });
+
+
    } else if(ansObj.answer == "Add an employee") {
       console.log(ansObj);
       addDataInst.addEmp([ansObj.empFirstName, ansObj.empLastName, ansObj.empRole, ansObj.empManager]);
       viewDataInst.getAllEmps().then(result=> console.table(result)).catch(err=> console.log("Promise Rejected: " + err));
+
+
+   } else if (ansObj.answer === "Update an Employee Role") {
+      updateDataInst.getEmpNames().then(result => {
+         const empNameArr = result.map(item => `${item.first_name} ${item.last_name}`);
+         inquirer.prompt(
+            {
+               type:'list',
+               message:'Which employee Role: ',
+               name:'empToChange',
+               choices: empNameArr
+            }
+         ).then((empObj) =>{
+            const tempArr = [empObj];
+            viewDataInst.getAllRoles().then(result => {
+               const roleArr = result.map(item => `${item.role_title}`);
+               inquirer.prompt(
+                  {
+                     type:'list',
+                     message:"What is the new Role: ",
+                     name:'newRole',
+                     choices:roleArr
+                  }
+               ).then(newRole => {
+                  tempArr.push(newRole);
+                  updateDataInst.updateRole(tempArr)
+               })
+            });
+         });
+      })
    } else {
-      console.log("No Match");
+      console.log("NO MATCH");
    }
 });
 

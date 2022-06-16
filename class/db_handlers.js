@@ -1,4 +1,6 @@
+const inquirer = require('inquirer');
 const mysql = require('mysql2');
+
 
 
 // Connect to database
@@ -158,4 +160,66 @@ class addData {
 
 };
 
-module.exports = {viewData, addData};
+
+class updateData{
+   constructor(){
+      this.sqlEmpNames = `SELECT first_name, last_name FROM employees`;
+      this.sqlEmpId = `SELECT id FROM employees WHERE first_name = ? AND last_name = ?`;
+      this.sqlRoleId = `SELECT id FROM roles WHERE title = ? `;
+      this.sqlUpdateRole = `UPDATE employees SET role_id = ? WHERE id = ?`;
+   };
+
+   getEmpNames() {
+      return new Promise((resolve, reject) => {
+         db.query(this.sqlEmpNames, (err, rows) => {
+            if (rows === undefined){
+               reject(new Error ("Rows not defined"));
+            } else {
+               resolve(rows);
+            }
+         });
+      });
+   };
+
+   getEmpId(params){
+      return new Promise((resolve, reject)=>{
+         db.query(this.sqlEmpId, params, (err, rows)=>{
+            if(rows === undefined){
+               reject(new Error("Rows undefined"));
+            } else {
+               resolve(rows);
+            }
+         });
+      });
+   }
+
+   getRoleId(params){
+      return new Promise((resolve, reject)=>{
+         db.query(this.sqlRoleId, params, (err, rows)=>{
+            if(rows === undefined){
+               reject(new Error("Rows undefined"));
+            } else {
+               resolve(rows);
+            }
+         });
+      });
+   }
+
+   updateRole(paramsArr){
+      this.getEmpId(paramsArr[0].empToChange.split(' ')).then(empId => {
+         this.getRoleId(paramsArr[1].newRole).then(roleId => {
+            return new Promise((resolve, reject) => {
+               db.query(this.sqlUpdateRole, [roleId[0].id, empId[0].id], (err, rows)=>{
+                  if (rows === undefined){
+                     reject(new Error("Rows undefined"));
+                  } else {
+                     resolve (rows);
+                  }
+               });
+            });
+         });
+      });
+   }
+}
+
+module.exports = {viewData, addData, updateData};
