@@ -24,7 +24,7 @@ const viewPrompts = () => {
                type:'list',
                name:"answer",
                message:'What would you like to do?',
-               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role"]
+               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role", "Update employee managers"]
             },
             { //ask this when add a department is chosen
                type:'input',
@@ -199,13 +199,37 @@ viewPrompts().then(ansObj => {
                   }
                ).then(newRole => {
                   tempArr.push(newRole);
-                  updateDataInst.updateRole(tempArr)
-               })
+                  updateDataInst.updateRole(tempArr);
+               });
             });
          });
       })
-   } else {
-      console.log("NO MATCH");
+   } else if (ansObj.answer === "Update employee managers"){
+      updateDataInst.getEmpNames().then(result => {
+         const empNameArr = result.map(item => `${item.first_name} ${item.last_name}`);
+         inquirer.prompt(
+            {
+               type:'list',
+               message:"Which employee's manager: ",
+               name:'empToChange',
+               choices: empNameArr
+            }
+         ).then(empObj => {
+            const tempArr = [empObj];
+            updateDataInst.getAllMan().then(result => {
+               const manArr = result.map(item => item.name);
+               inquirer.prompt({
+                  type:'list',
+                  name:'manToChange',
+                  message:'Choose the new Manger:',
+                  choices: manArr
+               }).then(manObj => {
+                  tempArr.push(manObj);
+                  updateDataInst.updateManager(tempArr);
+               });
+            });
+         });
+      })
    }
 });
 

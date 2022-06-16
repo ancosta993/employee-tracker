@@ -170,6 +170,8 @@ class updateData{
       SET employees.role_id = ?, employees.department_id = (SELECT roles.department_id FROM roles WHERE roles.id = ?), employees.manager_id = (SELECT managers.id FROM managers WHERE managers.department_id = employees.department_id)
       WHERE id = ?;`
       this.sqlUpdateRole = `UPDATE employees SET role_id = ? WHERE id = ?`;
+      this.sqlUpMan = `UPDATE employees SET employees.manager_id = (SELECT managers.id FROM managers WHERE managers.name = ?) WHERE id = ?;`;
+      this.sqlGetAllMan = 'SELECT * FROM managers;'
    };
 
    getEmpNames() {
@@ -226,7 +228,31 @@ class updateData{
    };
 
    // Bonus
-   
+   getAllMan(){
+   return new Promise((resolve, reject)=>{
+      db.query(this.sqlGetAllMan, (err,rows)=>{
+         if(rows === undefined){
+            reject(new Error("Rows Undefined"));
+         } else {
+            resolve(rows);
+         }
+      })
+   })
+   }
+
+   updateManager(paramsArr){
+      this.getEmpId(paramsArr[0].empToChange.split(' ')).then(empId => {
+         return new Promise((resolve, reject) => {
+            db.query(this.sqlUpMan, [paramsArr[1].manToChange, empId[0].id], (err, rows) => {
+               if(rows === undefined){
+                  reject(new Error("Rows undefined"));
+               } else {
+                  resolve(rows);
+               }
+            });
+         });
+      });
+   };
 }
 
 module.exports = {viewData, addData, updateData};
