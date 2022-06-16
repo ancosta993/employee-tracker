@@ -36,7 +36,10 @@ VALUES
    ("John","Doe", 5, 3, NULL),
    ("Mike","Chan", 6, 3, 3),
    ("Sarah", "Lourd", 7, 4,NULL),
-   ("Tom", "Allen", 8, 4,4);
+   ("Tom", "Allen", 8, 4,4),
+   ("Anthony", "Dcosta", 2, 1, 1),
+   ("Jeffrey", "Berrios", 8, 4,4),
+   ("Jamal", "Agee", 8, 4,4);
 
 
 -- SELECT employees.id, employees.first_name, employees.last_name, roles.title AS role, departments.name AS department, roles.salary AS salary, managers.name AS managers
@@ -59,4 +62,7 @@ VALUES
 
 
 -- UPDATE employees SET employees.manager_id = (SELECT managers.id FROM managers WHERE managers.name = "Sarah Lourd") WHERE id = 2;
+
+-- select managers.name, group_concat(employees.first_name,' ', employees.last_name) AS employee_names from employees 
+-- INNER JOIN managers ON employees.manager_id = managers.id group by employees.manager_id
 

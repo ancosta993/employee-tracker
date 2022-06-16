@@ -24,7 +24,7 @@ const viewPrompts = () => {
                type:'list',
                name:"answer",
                message:'What would you like to do?',
-               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role", "Update employee managers"]
+               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role", "Update employee managers","Get employees by managers"]
             },
             { //ask this when add a department is chosen
                type:'input',
@@ -230,6 +230,10 @@ viewPrompts().then(ansObj => {
             });
          });
       })
+   } else if(ansObj.answer === 'Get employees by managers'){
+      viewDataInst.getEmpsByMans().then(result => {
+         console.table(result);
+      });
    }
 });
 

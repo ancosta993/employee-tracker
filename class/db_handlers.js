@@ -27,7 +27,8 @@ class viewData{
       LEFT JOIN managers m ON e.manager_id = m.id
       LEFT JOIN roles r ON e.role_id = r.id;`;
 
-      
+      this.sqlEmpsByMans = `SELECT managers.name, GROUP_CONCAT(employees.first_name,' ', employees.last_name) AS employee_names FROM employees 
+      INNER JOIN managers ON employees.manager_id = managers.id group by employees.manager_id;`;
    }
    getAllDept(){
       return new Promise ((resolve, reject) => {
@@ -65,20 +66,17 @@ class viewData{
       });
    };
 
-   // utility
-   getManagers(){
+   getEmpsByMans(){
       return new Promise((resolve, reject) => {
-         const sql = `SELECT * FROM managers`;
-         db.query(sql, (err, rows) => {
-            if(rows === undefined){
-               reject(new Error("Rows is undefined"));
+         db.query(this.sqlEmpsByMans, (err, rows)=>{
+            if (rows === undefined){
+               reject(new Error("Rows undefined"));
             } else {
                resolve(rows);
             }
          });
       });
    };
-
 };
 
 class addData {
