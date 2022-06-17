@@ -1,9 +1,10 @@
 // const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const {viewData, addData, updateData} = require('./class/db_handlers');
+const {viewData, addData, updateData, deleteData} = require('./class/db_handlers');
 const viewDataInst = new viewData();
 const addDataInst = new addData();
 const updateDataInst = new updateData();
+const deleteDataInst = new deleteData();
 
 // Connect to database
 // const db = mysql.createConnection(
@@ -24,7 +25,7 @@ const viewPrompts = () => {
                type:'list',
                name:"answer",
                message:'What would you like to do?',
-               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role", "Update employee managers","Get employees by managers", "Get employees by departments"]
+               choices:["View All Departments", "View All Roles", "View All employees", "Add a Department", "Add a Role", "Add an employee", "Update an Employee Role", "Update employee managers","Get employees by managers", "Get employees by departments", "Delete A Department", "Delete A Role"]
             },
             { //ask this when add a department is chosen
                type:'input',
@@ -203,7 +204,7 @@ viewPrompts().then(ansObj => {
                });
             });
          });
-      })
+      });
    } else if (ansObj.answer === "Update employee managers"){
       updateDataInst.getEmpNames().then(result => {
          const empNameArr = result.map(item => `${item.first_name} ${item.last_name}`);
@@ -229,7 +230,7 @@ viewPrompts().then(ansObj => {
                });
             });
          });
-      })
+      });
    } else if(ansObj.answer === 'Get employees by managers'){
       viewDataInst.getEmpsByMans().then(result => {
          console.table(result);
@@ -238,6 +239,30 @@ viewPrompts().then(ansObj => {
       viewDataInst.getEmpsByDept().then(result => {
          console.table(result);
       });
+   } else if(ansObj.answer === "Delete A Department"){
+      viewDataInst.getAllDept().then(result =>{
+         const deptArr = result.map(item => item.name);
+         inquirer.prompt({
+            type:"list",
+            name:"delDept",
+            message:"Choose a department to delete",
+            choices:deptArr
+         }).then(deptObj  => deleteDataInst.deleteDept(deptObj.delDept));
+      });
+   } else if (ansObj.answer === "Delete A Role") {
+      viewDataInst.getAllRoles().then(result => {
+         const rolesArr = result.map(item => `${item.role_title}`);
+         inquirer.prompt({
+            type:'list',
+            name:'delRole',
+            message:"Choose the Role to be Deleted",
+            choices: rolesArr
+         }).then(roleObj =>{
+            deleteDataInst.deleteRole(roleObj.delRole);
+         });
+      });
+   } else {
+      console.log('No Match');
    }
 });
 

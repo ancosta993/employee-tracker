@@ -71,3 +71,7 @@ VALUES
 
 -- SELECT d.name AS department_name, GROUP_CONCAT(e.first_name," ",e.last_name) AS employee_names FROM employees e
 -- INNER JOIN departments d ON e.department_id = d.id GROUP BY e.department_id;
+
+-- DELETE FROM departments WHERE id = 1
+
+-- select id from departments where departments name 
