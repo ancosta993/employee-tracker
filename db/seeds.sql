@@ -39,7 +39,10 @@ VALUES
    ("Tom", "Allen", 8, 4,4),
    ("Anthony", "Dcosta", 2, 1, 1),
    ("Jeffrey", "Berrios", 8, 4,4),
-   ("Jamal", "Agee", 8, 4,4);
+   ("Jamal", "Agee", 8, 4,4),
+   ("Lorentz", "Gomez", 2, 1, 1),
+   ("Barack", "Brown",4,2,2);
+   
 
 
 -- SELECT employees.id, employees.first_name, employees.last_name, roles.title AS role, departments.name AS department, roles.salary AS salary, managers.name AS managers
@@ -66,3 +69,5 @@ VALUES
 -- select managers.name, group_concat(employees.first_name,' ', employees.last_name) AS employee_names from employees 
 -- INNER JOIN managers ON employees.manager_id = managers.id group by employees.manager_id
 
+-- SELECT d.name AS department_name, GROUP_CONCAT(e.first_name," ",e.last_name) AS employee_names FROM employees e
+-- INNER JOIN departments d ON e.department_id = d.id GROUP BY e.department_id;

@@ -25,10 +25,12 @@ class viewData{
       FROM employees e
       LEFT JOIN departments d ON e.department_id = d.id
       LEFT JOIN managers m ON e.manager_id = m.id
-      LEFT JOIN roles r ON e.role_id = r.id;`;
+      LEFT JOIN roles r ON e.role_id = r.id
+      ORDER BY e.department_id;`;
 
-      this.sqlEmpsByMans = `SELECT managers.name, GROUP_CONCAT(employees.first_name,' ', employees.last_name) AS employee_names FROM employees 
-      INNER JOIN managers ON employees.manager_id = managers.id group by employees.manager_id;`;
+      this.sqlEmpsByMans = `SELECT managers.name, GROUP_CONCAT(employees.first_name,' ', employees.last_name) AS employee_names FROM employees INNER JOIN managers ON employees.manager_id = managers.id group by employees.manager_id;`;
+
+      this.sqlGetEmpByDept = `SELECT d.name AS department_name, GROUP_CONCAT(e.first_name," ",e.last_name) AS employee_names FROM employees e INNER JOIN departments d ON e.department_id = d.id GROUP BY e.department_id;`;
    }
    getAllDept(){
       return new Promise ((resolve, reject) => {
@@ -70,6 +72,18 @@ class viewData{
       return new Promise((resolve, reject) => {
          db.query(this.sqlEmpsByMans, (err, rows)=>{
             if (rows === undefined){
+               reject(new Error("Rows undefined"));
+            } else {
+               resolve(rows);
+            }
+         });
+      });
+   };
+
+   getEmpsByDept(){
+      return new Promise((resolve, reject)=>{
+         db.query(this.sqlGetEmpByDept, (err, rows)=>{
+            if(rows === undefined){
                reject(new Error("Rows undefined"));
             } else {
                resolve(rows);
