@@ -61,7 +61,7 @@ class updateData{
                      reject(new Error("Rows undefined"));
                   } else {
                      resolve (rows);
-                  }
+                  };
                });
             });
          });

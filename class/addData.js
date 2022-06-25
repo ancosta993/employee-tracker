@@ -61,6 +61,8 @@ class addData {
                for (let i=0;i<result.length;i++){
                   if (result[i].name === params[4]){
                      params[4] = result[i].id;
+                  } else {
+                     params[4] = null;
                   }
                };
 

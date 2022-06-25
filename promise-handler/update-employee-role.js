@@ -1,5 +1,4 @@
 const inquirer = require('inquirer');
-
 const {viewData, addData, updateData, deleteData} = require('../class/export-all-class');
 
 const viewDataInst = new viewData();
@@ -32,10 +31,14 @@ const updateEmpRole = () => {
             ).then(newRole => {
                tempArr.push(newRole);
                updateDataInst.updateRole(tempArr);
+            })
+            .catch(err => {
+               console.log(err);
             });
          });
       });
    });
 }
+
 
 module.exports = updateEmpRole;
