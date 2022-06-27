@@ -63,24 +63,23 @@ Shows the user a list of all the roles, salary for that role, the department the
 ### View All Employees
 Shows the user a list of all the employees. It also shows the employees first and last name, their role, salary, department, and manager.
 
-┌─────────┬────┬────────────┬─────────────┬──────────────────────┬───────────────┬──────────┬────────────────────┐
-│ (index) │ id │ first_name │  last_name  │         role         │  department   │  salary  │      manager       │
-├─────────┼────┼────────────┼─────────────┼──────────────────────┼───────────────┼──────────┼────────────────────┤
-│    0    │ 1  │  'Ashley'  │ 'Rodriguez' │   'Lead Engineer'    │ 'Engineering' │ '150000' │        null        │
-│    1    │ 2  │  'Kevin'   │   'Tupik'   │ 'Software Engineer'  │ 'Engineering' │ '120000' │ 'Ashley Rodriguez' │
-│    2    │ 6  │   'Mike'   │   'Chan'    │ 'Software Engineer'  │ 'Engineering' │ '120000' │ 'Ashley Rodriguez' │
-│    3    │ 9  │ 'Anthony'  │  'Dcosta'   │ 'Software Engineer'  │ 'Engineering' │ '120000' │ 'Ashley Rodriguez' │
-│    4    │ 12 │ 'Lorentz'  │   'Gomez'   │ 'Software Engineer'  │ 'Engineering' │ '120000' │ 'Ashley Rodriguez' │
-│    5    │ 3  │  'Kunal'   │   'Singh'   │ 'Accountant Manager' │   'Finance'   │ '160000' │        null        │
-│    6    │ 4  │  'Malia'   │   'Brown'   │         null         │   'Finance'   │   null   │ 'Ashley Rodriguez' │
-│    7    │ 14 │  'Barack'  │   'Obama'   │         null         │   'Finance'   │   null   │   'Kunal Singh'    │
-│    8    │ 5  │   'John'   │    'Doe'    │     'Sales Lead'     │    'Sales'    │ '150000' │        null        │
-│    9    │ 13 │  'Barack'  │   'Brown'   │         null         │    'Sales'    │   null   │     'John Doe'     │
-│   10    │ 7  │  'Sarah'   │   'Lourd'   │  'Legal Team Lead'   │    'Legal'    │ '250000' │        null        │
-│   11    │ 8  │   'Tom'    │   'Allen'   │       'Lawyer'       │    'Legal'    │ '190000' │   'Sarah Lourd'    │
-│   12    │ 10 │ 'Jeffrey'  │  'Berrios'  │       'Lawyer'       │    'Legal'    │ '190000' │   'Sarah Lourd'    │
-│   13    │ 11 │  'Jamal'   │   'Agee'    │       'Lawyer'       │    'Legal'    │ '190000' │   'Sarah Lourd'    │
-└─────────┴────┴────────────┴─────────────┴──────────────────────┴────────
+|  (index)  |  id  |  first_name  |   last_name   |          role          |   department    |   salary   |       manager        |
+|-----------|------|--------------|---------------|------------------------|-----------------|------------|----------------------|
+|     0     |  1   |   'Ashley'   |  'Rodriguez'  |    'Lead Engineer'     |  'Engineering'  |  '150000'  |         null         |
+|     1     |  2   |   'Kevin'    |    'Tupik'    |  'Software Engineer'   |  'Engineering'  |  '120000'  |  'Ashley Rodriguez'  |
+|     2     |  6   |    'Mike'    |    'Chan'     |  'Software Engineer'   |  'Engineering'  |  '120000'  |  'Ashley Rodriguez'  |
+|     3     |  9   |  'Anthony'   |   'Dcosta'    |  'Software Engineer'   |  'Engineering'  |  '120000'  |  'Ashley Rodriguez'  |
+|     4     |  12  |  'Lorentz'   |    'Gomez'    |  'Software Engineer'   |  'Engineering'  |  '120000'  |  'Ashley Rodriguez'  |
+|     5     |  3   |   'Kunal'    |    'Singh'    |  'Accountant Manager'  |    'Finance'    |  '160000'  |         null         |
+|     6     |  4   |   'Malia'    |    'Brown'    |          null          |    'Finance'    |    null    |  'Ashley Rodriguez'  |
+|     7     |  14  |   'Barack'   |    'Obama'    |          null          |    'Finance'    |    null    |    'Kunal Singh'     |
+|     8     |  5   |    'John'    |     'Doe'     |      'Sales Lead'      |     'Sales'     |  '150000'  |         null         |
+|     9     |  13  |   'Barack'   |    'Brown'    |          null          |     'Sales'     |    null    |      'John Doe'      |
+|    10     |  7   |   'Sarah'    |    'Lourd'    |   'Legal Team Lead'    |     'Legal'     |  '250000'  |         null         |
+|    11     |  8   |    'Tom'     |    'Allen'    |        'Lawyer'        |     'Legal'     |  '190000'  |    'Sarah Lourd'     |
+|    12     |  10  |  'Jeffrey'   |   'Berrios'   |        'Lawyer'        |     'Legal'     |  '190000'  |    'Sarah Lourd'     |
+|    13     |  11  |   'Jamal'    |    'Agee'     |        'Lawyer'        |     'Legal'     |  '190000'  |    'Sarah Lourd'     |
+
 
 ## Add a department
 Once clic
