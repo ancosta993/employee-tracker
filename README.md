@@ -5,11 +5,11 @@ Demonstration for the application can be found [here](https://drive.google.com/f
 This is a command line application that stores employee information in a company through database. The users can use predifined queries thorugh the application  and retrieve information about the employees. 
 
 ## Table of Content
-**[Description](#description)**  
-**[Tools](#tools)**
-**[Installation](#installation)**
-**[Usage](#usage)**
-**[Improvement](#improvement)**
+***[Description](#description)***  
+***[Tools](#tools)***  
+***[Installation](#installation)***  
+***[Usage](#usage)***  
+***[Improvement](#improvement)***  
 
 ## Tools 
 Web Technologies used in this application:  
