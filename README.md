@@ -127,5 +127,69 @@ Once the user chooses the employee
 
 Once the choice is clicked, the employee role updates.
  
+### Update employee manager
+Once clicked, user is shown the following prompts:  
+`
+? Which employee's manager:  (Use arrow keys)  
+> Ashley Rodriguez  
+  Kevin Tupik  
+  Kunal Singh  
+  Malia Brown  
+  John Doe  
+  Mike Chan  
+  Sarah Lour  
+`
+Once a choice is made, the following is asked:
 
+`
+? Choose the new Manger: (Use arrow keys)  
+> Ashley Rodriguez  
+  Kunal Singh  
+  John Doe  
+  Sarah Lourd  
+`
 
+### Get employee by managers
+Once clicked, following is shown:  
+
+|           |         name         |                           employee_names                          |
+|-----------|----------------------|-------------------------------------------------------------------|
+|     0     |  'Ashley Rodriguez'  |  'Kevin Tupik,Malia Brown,Mike Chan,Anthony Dcosta,Lorentz Gomez' |
+|     1     |    'Kunal Singh'     |                           'Barack Obama'                          |
+|     2     |      'John Doe'      |                           'Barack Brown'                          |
+|     3     |    'Sarah Lourd'     |               'Tom Allen,Jeffrey Berrios,Jamal Agee'              |
+
+### Get employee by departments
+Once clicked, following is shown:   
+| (index) |  department_name |                             employee_names                            |
+|---------|------------------|-----------------------------------------------------------------------|
+| 0       | 'Engineering'    | 'Ashley Rodriguez,Kevin Tupik,Mike Chan,Anthony Dcosta,Lorentz Gomez' |
+| 1       |  'Finance'       |                'Kunal Singh,Malia Brown,Barack Obama'                 |
+| 2       |   'Sales'        |                        'John Doe,Barack Brown'                        |
+| 3       |   'Legal'        |          'Sarah Lourd,Tom Allen,Jeffrey Berrios,Jamal Agee'           |
+
+### Delete a department
+Once clicked, following is prompted:  
+`
+? Choose a department to delete (Use arrow keys)  
+> Engineering  
+  Finance  
+  Sales  
+  Legal  
+  Asset Protection  
+`
+
+The clicked department is deleted.  
+
+### Delete a Role
+Once clicked, following is prompted:  
+`
+? Choose the Role to be Deleted (Use arrow keys)  
+> Lead Engineer  
+  Software Engineer  
+  Accountant Manager  
+  Sales Lead  
+  Legal Team Lead  
+  Lawyer     
+`
+The clicked role is deleted.   
