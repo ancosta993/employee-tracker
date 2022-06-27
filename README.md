@@ -81,9 +81,51 @@ Shows the user a list of all the employees. It also shows the employees first an
 |    13     |  11  |   'Jamal'    |    'Agee'     |        'Lawyer'        |     'Legal'     |  '190000'  |    'Sarah Lourd'     |
 
 
-## Add a department
-Once clic
+### Add a department
+Once clicked, the user is prompted to enter a department name. Upon entering a string, that string is added under the department category.
 
+### Add a role
+Once clicked the user is prompted to enter a role name, their salary, and their department. Thise strings are then added under the role category.  
+? Enter new roles: Security  
+? Enter salary for role: 54000  
+? Which department does this role belong to: Asset Protection  
+
+### Add an employee:
+Once clicked, the user is prompted to enter the following:  
+
+? What would you like to do? Add an employee  
+? Enter the first name of the employee: Vaal  
+? Enter the last name of the employee: HazaK  
+? Enter the role of the employee: Security  
+? Enter the manager's name of the employee: John Doe  
+
+## Update employee role  
+Once cliked the user is prompted the following:  
+
+`
+ Which employee Role:  (Use arrow keys)  
+> Ashley Rodriguez  
+  Kevin Tupik  
+  Kunal Singh  
+  Malia Brown  
+  John Doe  
+  Mike Chan  
+  Sarah Lourd 
+  ...
+`
+Once the user chooses the employee
+
+`
+? What is the new Role:  (Use arrow keys)  
+> Lead Engineer  
+  Software Engineer  
+  Accountant Manager  
+  Sales Lead  
+  Legal Team Lead  
+  Lawyer  
+`
+
+Once the choice is clicked, the employee role updates.
  
 
 
