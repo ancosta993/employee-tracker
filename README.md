@@ -7,6 +7,9 @@ This is a command line application that stores employee information in a company
 ## Table of Content
 **[Description](#description)**  
 **[Tools](#tools)**
+**[Installation](#installation)**
+**[Usage](#usage)**
+**[Improvement](#improvement)**
 
 ## Tools 
 Web Technologies used in this application:  
@@ -193,3 +196,8 @@ Once clicked, following is prompted:
   Lawyer     
 `
 The clicked role is deleted.   
+
+## Improvement
+Currently, the application need to be restarted after employee role is update, role or department is deleted. This is a bad user experience.  
+There is also no error handling present. If the user types in field values that does not exist (ex. typing in a department name that does not exists), the program returns an error.  
+The only way to stop the application is pressing CTRL + C.  
